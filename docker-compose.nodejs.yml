@@ -6,11 +6,12 @@ services:
       context: .
       dockerfile: docker/vue-storefront-api/Dockerfile
     depends_on:
-      - es1
+      - es7
       - redis
     env_file: docker/vue-storefront-api/default.env
     environment:
       VS_ENV: dev
+    network_mode: host
     volumes:
       - './config:/var/www/config'
       - './ecosystem.json:/var/www/ecosystem.json'
@@ -26,4 +27,3 @@ services:
       - /var/www/dist
     ports:
       - '8080:8080'
-      
