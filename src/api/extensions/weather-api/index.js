@@ -28,12 +28,9 @@ module.exports = () => {
         uri: 'http://api.weatherapi.com/v1/forecast.json',
         json: true,
         qs: {
-          key: weatherApi.key,
-          q: req.query.q,
-          days: req.query.days,
-          dt: req.query.dt
-        }
-      })
+          ...req.query,
+          key: weatherApi.key
+      }})
       return apiStatus(res, result, 200);
     } catch (e) {
       apiStatus(res, "Something went wrong", 500)
